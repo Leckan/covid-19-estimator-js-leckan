@@ -1,4 +1,4 @@
-const chain ;
+const chain = data;
 const estimateCurrentlyInfected;
 const estimateProjectedInfections;
 const estimateSevereCases;
