@@ -9,29 +9,31 @@ const covid19ImpactEstimator = (data) => {
   }
   const setOfDays = Math.floor(estimateTime / 3);
   // Challenge 1 constants
-  const theCurrentlyInfected = data.reportedCases * 10;
-  const theInfectionsByRequestedTime = theCurrentlyInfected * (2 ** setOfDays);
-  const severeCurrentlyInfected = data.reportedCases * 50;
-  const severeInfectionsByRequestedTime = severeCurrentlyInfected * (2 ** setOfDays);
+  const infected = data.reportedCases * 10;
+  const periodInfected = infected * (2 ** setOfDays);
+  const severeInfected = data.reportedCases * 50;
+  const severePeriodInfected = severeInfected * (2 ** setOfDays);
   // Challenge 2 constants
-  const theSevereCasesByRequestedTime = Math.floor(15 / 100 * theInfectionsByRequestedTime);
-  const theSevereCasesByRequestedTimeForSevere = Math.floor(15 / 100 * severeInfectionsByRequestedTime);
-  const theHospitalBedsByRequestedTime = Math.floor((35 / 100 * data.totalHospitalBeds) - theSevereCasesByRequestedTime);
-  const severeHospitalBedsByRequestedTime = Math.floor((35 / 100 * data.totalHospitalBeds) - theSevereCasesByRequestedTimeForSevere);
+  const periodCases = Math.floor((15 / 100) * periodInfected);
+  const severePeriodCases = Math.floor((15 / 100) * severePeriodInfected);
+  const beds = Math.floor(((35 / 100) * data.totalHospitalBeds) - periodCases);
+  const severeBeds = Math.floor(((35 / 100) * data.totalHospitalBeds) - severePeriodCases);
+  // Challenge 3 constants
+
   const impact = {
-    currentlyInfected: theCurrentlyInfected,
-    infectionsByRequestedTime: theInfectionsByRequestedTime,
-    severeCasesByrequestedTime: theSevereCasesByRequestedTime,
-    hospitalBedsByRequestedTime: theHospitalBedsByRequestedTime,
+    currentlyInfected: infected,
+    infectionsByRequestedTime: periodInfected,
+    severeCasesByrequestedTime: periodCases,
+    hospitalBedsByRequestedTime: beds,
     casesForICUByRequestedTime: 0,
     casesForVentilatorsByRequestedTime: 0,
     dolarsInflight: 0
   };
   const severeImpact = {
-    currentlyInfected: severeCurrentlyInfected,
-    infectionsByRequestedTime: severeInfectionsByRequestedTime,
-    severeCasesByrequestedTime: theSevereCasesByRequestedTimeForSevere,
-    hospitalBedsByRequestedTime: severeHospitalBedsByRequestedTime,
+    currentlyInfected: severeInfected,
+    infectionsByRequestedTime: severePeriodInfected,
+    severeCasesByrequestedTime: severePeriodCases,
+    hospitalBedsByRequestedTime: severeBeds,
     casesForICUByRequestedTime: 0,
     casesForVentilatorsByRequestedTime: 0,
     dolarsInflight: 0
