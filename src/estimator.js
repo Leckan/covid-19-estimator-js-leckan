@@ -16,8 +16,8 @@ const covid19ImpactEstimator = (data) => {
   // Challenge 2 constants
   const periodCases = Math.floor(periodInfected * 0.15);
   const severePeriodCases = Math.floor(severePeriodInfected * 0.15);
-  const beds = Math.Round((data.totalHospitalBeds * 0.35) - (periodInfected * 0.15));
-  const severeBeds = Math.Round((data.totalHospitalBeds * 0.35) - (severePeriodInfected * 0.15));
+  const beds = Math.round((data.totalHospitalBeds * 0.35) - (periodInfected * 0.15));
+  const severeBeds = Math.round((data.totalHospitalBeds * 0.35) - (severePeriodInfected * 0.15));
   // Challenge 3 constants
   const icu = Math.floor(periodInfected * 0.05);
   const severeIcu = Math.floor(severePeriodInfected * 0.05);
