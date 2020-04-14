@@ -10,11 +10,11 @@ const covid19ImpactEstimator = (data) => {
   const setOfDays = Math.floor(estimateTime / 3);
   const impact = {
     currentlyInfected: data.reportedCases * 10,
-    infectionsByRequestedTime: currentlyInfected * (2 ** setOfDays)
+    infectionsByRequestedTime: data.reportedCases * 10 * (2 ** setOfDays)
   };
   const severeImpact = {
     currentlyInfected: data.reportedCases * 50,
-    infectionsByRequestedTime: currentlyInfected * (2 ** setOfDays)
+    infectionsByRequestedTime: data.reportedCases * 50 * (2 ** setOfDays)
   };
   return {
     data,
