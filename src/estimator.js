@@ -1,11 +1,25 @@
 const covid19ImpactEstimator = (data) => {
-    const input = data;
-    return{
-        data:input,
+    const estimator = chain(
+        //challenge 1
+        estimateCurrentlyInfected,
+        estimateProjectedInfections,
+
+        //challenge 2
+        estimateSevereCases,
+        estimateBedSpaceAvailability,
+
+        //challenge 3
+        estimateCasesForICU,
+        estimateCasesForVentilators,
+        estimateDollarsInFlight
+    );
+
+
+    return estimator({
+        data,
         impact: {},
         severeimpact: {}
-
-    }
+    });
 
 };
 
