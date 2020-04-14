@@ -1,4 +1,6 @@
 const covid19ImpactEstimator = (data) => {
+  const impact = {};
+  const severeimpact = {};
   let estimateTime;
   if (data.periodType === 'days') {
     estimateTime = data.timeToElapse;
@@ -8,22 +10,15 @@ const covid19ImpactEstimator = (data) => {
     estimateTime = data.timeToElapse * 30;
   }
   const setOfDays = Math.floor(estimateTime / 3);
-  const normalCurrentlyInfected = data.reportedCases * 10;
-  const severeCurrentlyInfected = data.reportedCases * 50;
-  const normalInfectionsByRequestedTime = normalCurrentlyInfected * (2 ** setOfDays);
-  const severeInfectionsByRequestedTime = severeCurrentlyInfected * (2 ** setOfDays);
-  const input = data;
+  impact.currentlyInfected = data.reportedCases * 10;
+  severeimpact.currentlyInfected = data.reportedCases * 50;
+  impact.infectionsByRequestedTime = impact.currentlyInfected * (2 ** setOfDays);
+  severeimpact.infectionsByRequestedTime = severeimpact.currentlyInfected * (2 ** setOfDays);
 
   return {
-    data: input,
-    impact: {
-      currentlyInfected: normalCurrentlyInfected,
-      infectionsByRequestedTime: normalInfectionsByRequestedTime
-    },
-    severeimpact: {
-      currentlyInfected: severeCurrentlyInfected,
-      infectionsByRequestedTime: severeInfectionsByRequestedTime
-    }
+    data,
+    impact,
+    severeimpact
   };
 };
 
