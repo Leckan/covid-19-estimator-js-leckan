@@ -24,8 +24,8 @@ const covid19ImpactEstimator = (data) => {
   const vent = Math.floor(0.02 * periodInfected);
   const severeVent = Math.floor(0.02 * severePeriodInfected);
   const avgDollar = data.region.avgDailyIncomeInUSD * data.region.avgDailyIncomePopulation;
-  const dollars = Math.floor(periodInfected * avgDollar * estimateDays);
-  const severeDollars = Math.floor(severePeriodInfected * avgDollar * estimateDays);
+  const dollars = Math.floor((periodInfected * avgDollar) / estimateDays);
+  const severeDollars = Math.floor((severePeriodInfected * avgDollar) / estimateDays);
   const impact = {
     currentlyInfected: infected,
     infectionsByRequestedTime: periodInfected,
