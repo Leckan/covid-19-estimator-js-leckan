@@ -8,21 +8,21 @@ const covid19ImpactEstimator = (data) => {
     estimateTime = data.timeToElapse * 30;
   }
   const setOfDays = Math.floor(estimateTime / 3);
-  const currentlyInfected = data.reportedCases * 10;
+  const normalCurrentlyInfected = data.reportedCases * 10;
   const severeCurrentlyInfected = data.reportedCases * 50;
-  const infectionsByRequestedTime = currentlyInfected * (2 ** setOfDays);
+  const normalInfectionsByRequestedTime = normalCurrentlyInfected * (2 ** setOfDays);
   const severeInfectionsByRequestedTime = severeCurrentlyInfected * (2 ** setOfDays);
   const input = data;
 
   return {
     data: input,
     impact: {
-      currentlyInfected,
-      infectionsByRequestedTime
+      currentlyInfected: normalCurrentlyInfected,
+      infectionsByRequestedTime: normalInfectionsByRequestedTime
     },
     severeimpact: {
-      severeCurrentlyInfected,
-      severeInfectionsByRequestedTime
+      currentlyInfected: severeCurrentlyInfected,
+      infectionsByRequestedTime: severeInfectionsByRequestedTime
     }
   };
 };
