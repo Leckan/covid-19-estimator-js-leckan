@@ -21,13 +21,15 @@ const covid19ImpactEstimator = (data) => {
   // Challenge 3 constants
   const icu = Math.round(periodInfected * 0.05);
   const severeIcu = Math.round(severePeriodInfected * 0.05);
+  const vent = Math.round(periodInfected * 0.02);
+  const severeVent = Math.round(severePeriodInfected * 0.02);
   const impact = {
     currentlyInfected: infected,
     infectionsByRequestedTime: periodInfected,
     severeCasesByRequestedTime: periodCases,
     hospitalBedsByRequestedTime: beds,
     casesForICUByRequestedTime: icu,
-    casesForVentilatorsByRequestedTime: 0,
+    casesForVentilatorsByRequestedTime: vent,
     dolarsInflight: 0
   };
   const severeImpact = {
@@ -36,7 +38,7 @@ const covid19ImpactEstimator = (data) => {
     severeCasesByRequestedTime: severePeriodCases,
     hospitalBedsByRequestedTime: severeBeds,
     casesForICUByRequestedTime: severeIcu,
-    casesForVentilatorsByRequestedTime: 0,
+    casesForVentilatorsByRequestedTime: severeVent,
     dolarsInflight: 0
   };
   return {
