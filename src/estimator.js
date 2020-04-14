@@ -1,25 +1,21 @@
-const chain = (data) => {};
-const estimateCurrentlyInfected = {};
-const estimateProjectedInfections = {};
-const estimateSevereCases = {};
-const estimateBedSpaceAvailability = {};
-const estimateCasesForICU = {};
-const estimateCasesForVentilators = {};
-const estimateDollarsInFlight = {};
-
 const covid19ImpactEstimator = (data) => {
-  const estimator = chain(
-    // challenge 1
-    estimateCurrentlyInfected,
-    estimateProjectedInfections,
-    // challenge 2
-    estimateSevereCases,
-    estimateBedSpaceAvailability,
-    // challenge 3
-    estimateCasesForICU,
-    estimateCasesForVentilators,
-    estimateDollarsInFlight
-  );
+  let estimateTime;
+  if(data.periodType ==='days') {
+    estimateTime = data.timeToElapse;
+  }
+  else if (data.periodType ==='weeks') {
+    estimateTime = data.timeToElapse * 7;
+  }
+  else if (data.periodType ==='months') {
+    estimateTime = data.timeToElapse * 30;
+  }
+  const setOfDays = Math.floor(estimateTime / 3);
+  const currentlyInfected = data.reportedCases * 10;
+  const severeCurrentlyInfected = data.reportedCases * 50;
+  const infectionsByRequestedTime = currentlyInfected * (2 ** setOfDays);
+  const severeInfectionsByRequestedTime = severeCurrentlyInfected * (2 ** setOfDays);
+  const input = data;
+
   const impact = {
     currentlyInfected = data.reportedCases * 10,
     infectionsByRequestedTime = 55
@@ -29,9 +25,15 @@ const covid19ImpactEstimator = (data) => {
     infectionsByRequestedTime = 55
   }
   return {
-    data,
-    impact,
-    severeimpact};
+    data: input,
+    impact: {
+      currentlyInfected,
+      infectionsByRequestedTime
+    },
+    severeimpact: {
+      severeCurrentlyInfected,
+      severeInfectionsByRequestedTime
+    }};
 };
 
 export default covid19ImpactEstimator;
