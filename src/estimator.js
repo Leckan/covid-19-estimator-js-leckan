@@ -9,7 +9,7 @@ const estimateDollarsInFlight = {};
 
 const covid19ImpactEstimator = (data) => {
   const estimator = chain(
-    // challenge 1  
+    // challenge 1
     estimateCurrentlyInfected,
     estimateProjectedInfections,
     // challenge 2
@@ -19,8 +19,8 @@ const covid19ImpactEstimator = (data) => {
     estimateCasesForICU,
     estimateCasesForVentilators,
     estimateDollarsInFlight
-    );
-        
+  );
+
   return estimator({
     data,
     impact: {},
