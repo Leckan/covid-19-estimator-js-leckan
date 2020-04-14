@@ -21,11 +21,11 @@ const covid19ImpactEstimator = (data) => {
   // Challenge 3 constants
   const icu = Math.floor(periodInfected * 0.05);
   const severeIcu = Math.floor(severePeriodInfected * 0.05);
-  const vent = Math.floor(periodInfected * 0.02);
-  const severeVent = Math.floor(severePeriodInfected * 0.02);
+  const vent = Math.round(periodInfected * 0.02);
+  const severeVent = Math.round(severePeriodInfected * 0.02);
   const avgDollar = data.region.avgDailyIncomeInUSD * data.region.avgDailyIncomePopulation;
-  const dollars = Math.floor(periodInfected * avgDollar * estimateDays);
-  const severeDollars = Math.floor(severePeriodInfected * avgDollar * estimateDays);
+  const dollars = Math.round(periodInfected * avgDollar * estimateDays);
+  const severeDollars = Math.round(severePeriodInfected * avgDollar * estimateDays);
   const impact = {
     currentlyInfected: infected,
     infectionsByRequestedTime: periodInfected,
