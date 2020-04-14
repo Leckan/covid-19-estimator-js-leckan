@@ -14,12 +14,13 @@ const covid19ImpactEstimator = (data) => {
   const severeInfected = data.reportedCases * 50;
   const severePeriodInfected = severeInfected * (2 ** setOfDays);
   // Challenge 2 constants
-  const periodCases = Math.floor(periodInfected * (15 / 100));
-  const severePeriodCases = Math.floor(severePeriodInfected * (15 / 100));
-  const beds = Math.floor((data.totalHospitalBeds * (35 / 100))) - periodCases;
-  const severeBeds = Math.floor((data.totalHospitalBeds * (35 / 100))) - severePeriodCases;
+  const periodCases = Math.round(periodInfected * 0.15);
+  const severePeriodCases = Math.round(severePeriodInfected * 0.15);
+  const beds = Math.round((data.totalHospitalBeds * 0.35)) - periodCases;
+  const severeBeds = Math.round((data.totalHospitalBeds * 0.35)) - severePeriodCases;
   // Challenge 3 constants
-
+  const icu = periodInfected * 0.05;
+  const severeIcu = severePeriodInfected * 0.05;
   const impact = {
     currentlyInfected: infected,
     infectionsByRequestedTime: periodInfected,
