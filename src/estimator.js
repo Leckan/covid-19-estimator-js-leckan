@@ -1,11 +1,11 @@
 const chain = data;
-const estimateCurrentlyInfected;
-const estimateProjectedInfections;
-const estimateSevereCases;
-const estimateBedSpaceAvailability;
-const estimateCasesForICU;
-const estimateCasesForVentilators;
-const estimateDollarsInFlight;
+const estimateCurrentlyInfected = data;
+const estimateProjectedInfections = data;
+const estimateSevereCases = data;
+const estimateBedSpaceAvailability = data;
+const estimateCasesForICU = data;
+const estimateCasesForVentilators = data;
+const estimateDollarsInFlight = data;
 
 const covid19ImpactEstimator = (data) => {
     const estimator = chain(
