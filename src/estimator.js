@@ -23,8 +23,9 @@ const covid19ImpactEstimator = (data) => {
   const severeIcu = Math.round(severePeriodInfected * 0.05);
   const vent = Math.round(periodInfected * 0.02);
   const severeVent = Math.round(severePeriodInfected * 0.02);
-  const dollars = Math.round(periodInfected * data.region.avgDailyIncomeInUSD * data.region.avgDailyIncomePopulation * estimateDays);
-  const severeDollars = Math.round(severePeriodInfected * data.region.avgDailyIncomeInUSD * data.region.avgDailyIncomePopulation * estimateDays);
+  const avgDollar = data.region.avgDailyIncomeInUSD * data.region.avgDailyIncomePopulation;
+  const dollars = Math.round(periodInfected * avgDollar * estimateDays);
+  const severeDollars = Math.round(severePeriodInfected * avgDollar * estimateDays);
   const impact = {
     currentlyInfected: infected,
     infectionsByRequestedTime: periodInfected,
